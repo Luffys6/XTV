@@ -1,0 +1,28 @@
+{
+  "grade": 3,
+  "questions": [
+    {"id": "m01", "subject": "math", "q": "24 × 5 = ?", "options": ["120", "100", "110", "125"], "answer": 0, "explain": "24×5=120"},
+    {"id": "m02", "subject": "math", "q": "96 ÷ 8 = ?", "options": ["12", "11", "13", "14"], "answer": 0, "explain": "8×12=96，所以 96÷8=12"},
+    {"id": "m03", "subject": "math", "q": "一箱牛奶有 12 瓶，3 箱一共多少瓶？", "options": ["36 瓶", "24 瓶", "15 瓶", "32 瓶"], "answer": 0, "explain": "12×3=36"},
+    {"id": "m04", "subject": "math", "q": "1 米等于多少厘米？", "options": ["100 厘米", "10 厘米", "1000 厘米", "60 厘米"], "answer": 0, "explain": "1米=100厘米"},
+    {"id": "m05", "subject": "math", "q": "边长 4 厘米的正方形，周长是多少？", "options": ["16 厘米", "8 厘米", "12 厘米", "20 厘米"], "answer": 0, "explain": "正方形周长=边长×4=16厘米"},
+    {"id": "m06", "subject": "math", "q": "0.5 + 0.3 = ?", "options": ["0.8", "0.08", "8", "0.53"], "answer": 0, "explain": "小数点对齐相加：0.5+0.3=0.8"},
+    {"id": "m07", "subject": "math", "q": "25 × 4 = ?", "options": ["100", "80", "90", "125"], "answer": 0, "explain": "25×4=100"},
+
+    {"id": "c01", "subject": "chinese", "q": "“停车坐爱枫林晚”的上一句是？", "options": ["远上寒山石径斜", "白云生处有人家", "霜叶红于二月花", "春风又绿江南岸"], "answer": 0, "explain": "《山行》：远上寒山石径斜，白云生处有人家"},
+    {"id": "c02", "subject": "chinese", "q": "“欲把西湖比西子”的下一句是？", "options": ["淡妆浓抹总相宜", "水光潋滟晴方好", "山色空蒙雨亦奇", "只缘身在此山中"], "answer": 0, "explain": "《饮湖上初晴后雨》：欲把西湖比西子，淡妆浓抹总相宜"},
+    {"id": "c03", "subject": "chinese", "q": "“骄”字的部首是？", "options": ["马", "乔", "夭", "大"], "answer": 0, "explain": "“骄”是马字旁"},
+    {"id": "c04", "subject": "chinese", "q": "成语“画蛇添足”比喻什么？", "options": ["多此一举", "锦上添花", "雪中送炭", "一举两得"], "answer": 0, "explain": "画蛇添足指做了多余的事，反而不好"},
+    {"id": "c05", "subject": "chinese", "q": "一（ ）大象，括号里应填？", "options": ["头", "只", "条", "匹"], "answer": 0, "explain": "大牲口用“头”：一头大象"},
+    {"id": "c06", "subject": "chinese", "q": "“宁静”的反义词是？", "options": ["喧闹", "安静", "平静", "寂静"], "answer": 0, "explain": "宁静 ↔ 喧闹，其余三个是近义词"},
+    {"id": "c07", "subject": "chinese", "q": "“春天像个害羞的小姑娘”用了什么修辞手法？", "options": ["比喻", "夸张", "反问", "排比"], "answer": 0, "explain": "把春天比作小姑娘，是比喻"},
+
+    {"id": "e01", "subject": "english", "q": "“teacher”是什么意思？", "options": ["老师", "学生", "医生", "司机"], "answer": 0, "explain": "teacher = 老师"},
+    {"id": "e02", "subject": "english", "q": "She ___ my sister.", "options": ["is", "am", "are", "be"], "answer": 0, "explain": "主语是 she，用 is"},
+    {"id": "e03", "subject": "english", "q": "“foot”的复数形式是？", "options": ["feet", "foots", "footes", "feets"], "answer": 0, "explain": "不规则复数：foot → feet"},
+    {"id": "e04", "subject": "english", "q": "“Wednesday”是星期几？", "options": ["星期三", "星期二", "星期四", "星期一"], "answer": 0, "explain": "Wednesday = 星期三"},
+    {"id": "e05", "subject": "english", "q": "“apple”的复数形式是？", "options": ["apples", "applees", "apple", "applies"], "answer": 0, "explain": "直接加 s：apple → apples"},
+    {"id": "e06", "subject": "english", "q": "别人说“Thank you.”，你应该回答？", "options": ["You're welcome.", "Thank you.", "Sorry.", "Goodbye."], "answer": 0, "explain": "回答感谢用 You're welcome."},
+    {"id": "e07", "subject": "english", "q": "I like ___ .（我喜欢苹果）", "options": ["apples", "apple", "an apples", "appleses"], "answer": 0, "explain": "表示喜欢某类事物用复数 apples"}
+  ]
+}

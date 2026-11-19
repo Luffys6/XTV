@@ -1,0 +1,50 @@
+# Gradle
+.gradle/
+build/
+app/build/
+
+# 本机 SDK 路径（每台电脑不同，不入库）
+local.properties
+
+# 本机私密配置：AI Key / 授权密钥（泄露 = 别人能给任意设备造激活码）
+secrets.properties
+
+# 内部授权设计文档（含验签样例，不入公开仓库）
+docs/授权机制说明.md
+
+# 签名私钥与密钥文件（绝不入库）
+key/
+*.pepk
+mima
+
+# 已构建的安装包（含打包时的私密配置，只发 Release，不入库）
+app/release/
+*.apk
+*.aab
+
+# 本地协作/会话记录
+.workbuddy/
+
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+
+# Android Studio / IDEA 运行产物
+captures/
+.externalNativeBuild/
+.cxx/
+
+# 签名与密钥（如有正式签名文件切勿入库）
+*.jks
+*.keystore
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.log
+*.tmp

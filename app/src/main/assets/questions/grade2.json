@@ -1,0 +1,28 @@
+{
+  "grade": 2,
+  "questions": [
+    {"id": "m01", "subject": "math", "q": "7 × 3 = ?", "options": ["21", "10", "24", "18"], "answer": 0, "explain": "三七二十一"},
+    {"id": "m02", "subject": "math", "q": "6 × 8 = ?", "options": ["48", "42", "54", "36"], "answer": 0, "explain": "六八四十八"},
+    {"id": "m03", "subject": "math", "q": "45 ÷ 5 = ?", "options": ["9", "8", "7", "5"], "answer": 0, "explain": "五九四十五，所以 45÷5=9"},
+    {"id": "m04", "subject": "math", "q": "100 - 37 = ?", "options": ["63", "73", "67", "53"], "answer": 0, "explain": "100-37=63"},
+    {"id": "m05", "subject": "math", "q": "一个长方形有几条边？", "options": ["4 条", "3 条", "5 条", "6 条"], "answer": 0, "explain": "长方形有4条边，对边相等"},
+    {"id": "m06", "subject": "math", "q": "3 个 5 相加是多少？", "options": ["15", "8", "10", "35"], "answer": 0, "explain": "5+5+5=15，也就是 5×3=15"},
+    {"id": "m07", "subject": "math", "q": "钟面上分针走一圈是多少分钟？", "options": ["60 分钟", "30 分钟", "12 分钟", "24 分钟"], "answer": 0, "explain": "分针走一圈是60分钟，也就是1小时"},
+
+    {"id": "c01", "subject": "chinese", "q": "“春眠不觉晓”的下一句是？", "options": ["处处闻啼鸟", "夜来风雨声", "花落知多少", "白日依山尽"], "answer": 0, "explain": "《春晓》：春眠不觉晓，处处闻啼鸟"},
+    {"id": "c02", "subject": "chinese", "q": "“森”字是由几个“木”组成的？", "options": ["3 个", "2 个", "4 个", "1 个"], "answer": 0, "explain": "三个“木”组成“森”"},
+    {"id": "c03", "subject": "chinese", "q": "“快乐”的反义词是？", "options": ["伤心", "高兴", "开心", "愉快"], "answer": 0, "explain": "快乐 ↔ 伤心，其余三个都是近义词"},
+    {"id": "c04", "subject": "chinese", "q": "一（ ）小狗，括号里应填？", "options": ["只", "朵", "条", "匹"], "answer": 0, "explain": "小动物用“只”：一只小狗"},
+    {"id": "c05", "subject": "chinese", "q": "“狐假虎威”中“假”的意思是？", "options": ["借", "假的", "假装", "假期"], "answer": 0, "explain": "“假”在这里是“借”的意思，借老虎的威风"},
+    {"id": "c06", "subject": "chinese", "q": "下面词语中没有错别字的是？", "options": ["认真", "认直", "任真", "认珍"], "answer": 0, "explain": "正确写法是“认真”"},
+    {"id": "c07", "subject": "chinese", "q": "“弯弯的月亮像小船”用了什么修辞手法？", "options": ["比喻", "拟人", "夸张", "排比"], "answer": 0, "explain": "把月亮比作小船，是比喻"},
+
+    {"id": "e01", "subject": "english", "q": "“book”是什么意思？", "options": ["书", "铅笔", "书包", "尺子"], "answer": 0, "explain": "book = 书"},
+    {"id": "e02", "subject": "english", "q": "I ___ a boy.", "options": ["am", "is", "are", "be"], "answer": 0, "explain": "主语是 I，用 am"},
+    {"id": "e03", "subject": "english", "q": "“two”表示数字几？", "options": ["2", "3", "10", "12"], "answer": 0, "explain": "two = 2"},
+    {"id": "e04", "subject": "english", "q": "“big”的反义词是？", "options": ["small", "tall", "long", "fat"], "answer": 0, "explain": "big（大）↔ small（小）"},
+    {"id": "e05", "subject": "english", "q": "“How old are you?” 是什么意思？", "options": ["你几岁了", "你叫什么名字", "你好吗", "你在哪里"], "answer": 0, "explain": "How old are you? = 你多大了"},
+    {"id": "e06", "subject": "english", "q": "“cat”的复数形式是？", "options": ["cats", "cates", "caties", "cat"], "answer": 0, "explain": "一般名词直接加 s：cat → cats"},
+    {"id": "e07", "subject": "english", "q": "“Monday”是星期几？", "options": ["星期一", "星期二", "星期日", "星期六"], "answer": 0, "explain": "Monday = 星期一"}
+  ]
+}

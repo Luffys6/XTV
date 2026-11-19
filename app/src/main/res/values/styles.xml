@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 普通按钮：默认深蓝灰底，遥控器聚焦时亮蓝 + 描边 -->
+    <style name="Btn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">62dp</item>
+        <item name="android:background">@drawable/bg_btn</item>
+        <item name="android:backgroundTint">@null</item>
+        <item name="android:textColor">@color/btn_text</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!-- 主行动按钮：常驻蓝底 -->
+    <style name="Btn.Primary">
+        <item name="android:background">@drawable/bg_btn_primary</item>
+        <item name="android:textSize">19sp</item>
+    </style>
+
+    <!-- 减号/加号小按键 -->
+    <style name="Btn.Step">
+        <item name="android:layout_width">52dp</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:background">@drawable/bg_btn_step</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <!-- 分组小标题 -->
+    <style name="SectionTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+
+    <!-- 设置行左侧标签 -->
+    <style name="RowLabel">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <!-- 设置行右侧数值 -->
+    <style name="RowValue">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">96dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/stroke_divider</item>
+    </style>
+
+</resources>

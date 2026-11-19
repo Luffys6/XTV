@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>学习小卫士 · 家长管理</title>
+<style>
+  :root {
+    --bg: #0f1622;
+    --panel: #1a2332;
+    --card: #1e2a3f;
+    --line: #33456a;
+    --text: #f2f5fa;
+    --sub: #9aa6b8;
+    --blue: #3d6dd8;
+    --green: #66bb6a;
+    --red: #ef5350;
+    --orange: #ffb74d;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 15px/1.5 -apple-system, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+    padding: 16px 14px 40px;
+  }
+  h1 { font-size: 20px; margin: 0; }
+  .muted { color: var(--sub); font-size: 13px; }
+  .hide { display: none !important; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 16px; margin-bottom: 14px;
+  }
+  .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .row + .row { margin-top: 12px; }
+  label { color: var(--sub); font-size: 14px; }
+  input, select, button, textarea { font: inherit; }
+  input[type=text], input[type=number], input[type=password], select, textarea {
+    background: #16203200; background-color: #162032;
+    border: 1px solid var(--line); color: var(--text);
+    border-radius: 10px; padding: 10px 12px; width: 100%;
+  }
+  input::placeholder, textarea::placeholder { color: #5d6b83; }
+  button {
+    background: var(--blue); color: #fff; border: 0; border-radius: 10px;
+    padding: 11px 16px; font-weight: 600;
+  }
+  button.ghost { background: #26354d; color: var(--text); font-weight: 500; }
+  button.danger { background: #5a2a2a; color: #ffd9d6; }
+  button:disabled { opacity: .5; }
+  .btn-block { width: 100%; }
+
+  .tabs { display: flex; gap: 8px; margin: 4px 0 14px; }
+  .tab {
+    flex: 1; text-align: center; padding: 10px 0; border-radius: 10px;
+    background: #18233a; color: var(--sub); font-size: 14px;
+  }
+  .tab.on { background: var(--blue); color: #fff; font-weight: 600; }
+
+  .badge { display: inline-block; padding: 1px 7px; border-radius: 6px; font-size: 12px; }
+  .b-math { color: #64b5f6; border: 1px solid #64b5f6; }
+  .b-chinese { color: #ffb74d; border: 1px solid #ffb74d; }
+  .b-english { color: #81c784; border: 1px solid #81c784; }
+  .b-custom { color: #ce93d8; border: 1px solid #ce93d8; }
+  .b-ai { color: #4dd0e1; border: 1px solid #4dd0e1; }
+  .b-builtin { color: var(--sub); border: 1px solid var(--line); }
+
+  .qitem { padding: 12px 0; border-top: 1px solid #2a3854; }
+  .qitem:first-child { border-top: 0; }
+  .qtext { margin: 6px 0; word-break: break-word; }
+  .ansline { color: var(--green); font-size: 13px; }
+  .explain { color: var(--sub); font-size: 13px; margin-top: 4px; }
+  .times { color: #ef9a9a; font-size: 13px; }
+  .empty { color: var(--sub); text-align: center; padding: 24px 0; }
+
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .stat { background: #16203a; border-radius: 10px; padding: 10px 12px; }
+  .stat b { display: block; font-size: 20px; margin-top: 2px; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%);
+    background: #26354d; color: #fff; padding: 10px 18px; border-radius: 999px;
+    font-size: 14px; opacity: 0; transition: opacity .2s; pointer-events: none;
+    max-width: 88vw; text-align: center; z-index: 99;
+  }
+  .toast.show { opacity: 1; }
+  .devcode {
+    margin-top: 6px;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 22px;
+    letter-spacing: 3px;
+    color: #ffd54f;
+    word-break: break-all;
+  }
+  .hint { color: var(--sub); font-size: 12px; margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<div id="loginView">
+  <div style="margin:18px 0 22px">
+    <h1>学习小卫士 · 家长管理</h1>
+    <div class="muted" style="margin-top:6px">手机与电视连同一个 WiFi 即可管理</div>
+  </div>
+  <div class="card">
+    <label>家长密码</label>
+    <input id="pwd" type="password" inputmode="numeric" placeholder="电视上设置的 6~8 位数字" style="margin-top:8px">
+    <button class="btn-block" style="margin-top:14px" onclick="login()">登录</button>
+    <div class="hint">密码错误 5 次会锁定 1 分钟</div>
+  </div>
+</div>
+
+<div id="mainView" class="hide">
+  <div class="row" style="margin-bottom:14px">
+    <div>
+      <h1>学习小卫士 · 家长管理</h1>
+      <div class="muted" id="devInfo">连接中…</div>
+    </div>
+    <button class="ghost" onclick="logout()">退出</button>
+  </div>
+
+  <div class="card">
+    <div class="stat-grid">
+      <div class="stat"><span class="muted">答题守护</span><b id="sEnabled">—</b></div>
+      <div class="stat"><span class="muted">守护服务</span><b id="sService">—</b></div>
+      <div class="stat"><span class="muted">本地题库</span><b id="sBank">—</b></div>
+      <div class="stat"><span class="muted">今日答错</span><b id="sTodayWrong">—</b></div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab on" data-tab="rules" onclick="switchTab('rules')">规则</div>
+    <div class="tab" data-tab="custom" onclick="switchTab('custom')">自建题</div>
+    <div class="tab" data-tab="wrong" onclick="switchTab('wrong')">错题本</div>
+  </div>
+
+  <!-- 规则 -->
+  <div id="tab-rules">
+    <div class="card">
+      <div class="row">
+        <div><div>答题守护开关</div><div class="muted">关闭后不计时、不弹题</div></div>
+        <input id="enabled" type="checkbox" style="width:24px;height:24px">
+      </div>
+      <div class="row">
+        <div><div>守护服务</div><div class="muted" id="serviceHint">电视后台的计时服务，停了就不弹题</div></div>
+        <button id="serviceBtn" class="ghost" onclick="toggleService()">—</button>
+      </div>
+      <div class="row">
+        <label>弹题间隔（分钟）</label>
+        <input id="interval" type="number" min="5" max="30" step="5" style="width:110px;text-align:center">
+      </div>
+      <div class="row">
+        <label>解锁需答对（1~10 题）</label>
+        <input id="required" type="number" min="1" max="10" style="width:110px;text-align:center">
+      </div>
+      <div class="row">
+        <label>题目难度</label>
+        <select id="difficulty" style="width:150px">
+          <option value="1">简单（基础巩固）</option>
+          <option value="2">中等（推荐）</option>
+          <option value="3">较难（拔高）</option>
+        </select>
+      </div>
+      <div class="row">
+        <label>年级</label>
+        <select id="grade" style="width:150px">
+          <option value="1">小学 1 年级</option><option value="2">小学 2 年级</option>
+          <option value="3">小学 3 年级</option><option value="4">小学 4 年级</option>
+          <option value="5">小学 5 年级</option><option value="6">小学 6 年级</option>
+          <option value="7">初中 1 年级</option><option value="8">初中 2 年级</option>
+          <option value="9">初中 3 年级</option>
+        </select>
+      </div>
+      <div class="row">
+        <label>学期</label>
+        <select id="semester" style="width:150px">
+          <option value="1">上学期</option>
+          <option value="2">下学期</option>
+        </select>
+      </div>
+      <button class="btn-block" style="margin-top:16px" onclick="saveConfig()">保存设置</button>
+      <div class="hint">AI 出题：<span id="aiState">—</span>（换年级/学期/难度后 AI 会按新设定出题；上下学期题库独立，难度按年级各存一份）</div>
+    </div>
+
+    <div class="card">
+      <div class="row" style="margin-bottom:6px">
+        <label>使用期限</label>
+        <span id="licState" class="badge">—</span>
+      </div>
+      <div class="muted">到期日：<span id="licExpire">—</span></div>
+      <div id="licOffHint" class="hint hide">当前版本未启用使用期限限制：永久使用，无需激活。</div>
+      <div id="licActBox">
+        <div class="muted" style="margin-top:10px">设备码（发给管理员换激活码）</div>
+        <div class="devcode" id="licDevice">—</div>
+        <button class="btn-block ghost" style="margin-top:10px" onclick="copyDevice()">复制设备码</button>
+        <input id="licCode" type="text" inputmode="numeric" maxlength="12" placeholder="输入 12 位激活码续期" style="margin-top:14px">
+        <button class="btn-block" style="margin-top:10px" onclick="activateLicense()">激活 / 续期</button>
+        <div class="hint">激活码与这台电视绑定，换设备无效；续期只需再输一次新码，不用重装 APK。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 自建题（只列家长自己加的题；内置/AI 题在电视上自动管理，不用手机翻） -->
+  <div id="tab-custom" class="hide">
+    <div class="card">
+      <button class="btn-block ghost" onclick="toggleAdd()">＋ 新增自建题</button>
+      <div id="addForm" class="hide" style="margin-top:14px">
+        <div class="row"><label>科目</label>
+          <select id="aSubject" style="width:150px">
+            <option value="math">数学</option><option value="chinese">语文</option><option value="english">英语</option>
+          </select>
+        </div>
+        <textarea id="aQ" rows="2" placeholder="题干，例如：0.3 × 0.4 = ?" style="margin-top:10px"></textarea>
+        <input id="aO0" type="text" placeholder="选项 A" style="margin-top:8px">
+        <input id="aO1" type="text" placeholder="选项 B" style="margin-top:8px">
+        <input id="aO2" type="text" placeholder="选项 C" style="margin-top:8px">
+        <input id="aO3" type="text" placeholder="选项 D（可留空）" style="margin-top:8px">
+        <div class="row" style="margin-top:10px"><label>正确选项</label>
+          <select id="aAnswer" style="width:150px">
+            <option value="0">A</option><option value="1">B</option><option value="2">C</option><option value="3">D</option>
+          </select>
+        </div>
+        <input id="aExplain" type="text" placeholder="解析（可选）" style="margin-top:10px">
+        <button class="btn-block" style="margin-top:14px" onclick="addQuestion()">保存到电视</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="row" style="margin-bottom:10px">
+        <label>我加的题 <span id="bankCount" class="muted"></span></label>
+        <button class="ghost" onclick="loadCustom()">刷新</button>
+      </div>
+      <div id="qlist"></div>
+    </div>
+  </div>
+
+  <!-- 错题本 -->
+  <div id="tab-wrong" class="hide">
+    <div class="card">
+      <div class="row" style="margin-bottom:6px">
+        <label>错题本 <span id="wrongCount" class="muted"></span></label>
+        <div style="display:flex;gap:8px">
+          <button class="ghost" onclick="loadWrong()">刷新</button>
+          <button class="danger" onclick="clearWrong()">清空</button>
+        </div>
+      </div>
+      <div class="muted" id="wrongTip" style="margin-bottom:10px">按答错次数排序，错得最多的在最上面；孩子已掌握的题点「已掌握」移出</div>
+      <div id="wlist"></div>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+var token = sessionStorage.getItem('ql_token') || '';
+var questions = [];
+var SUBJECT = { math: '数学', chinese: '语文', english: '英语' };
+
+function toast(msg, ms) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(function () { t.classList.remove('show'); }, ms || 2200);
+}
+
+function api(path, opts) {
+  opts = opts || {};
+  var headers = { 'Content-Type': 'application/json' };
+  if (token) headers['Authorization'] = 'Bearer ' + token;
+  return fetch(path, {
+    method: opts.method || 'GET',
+    headers: headers,
+    body: opts.body ? JSON.stringify(opts.body) : undefined
+  }).then(function (r) {
+    return r.json().catch(function () { return { ok: false, message: '响应解析失败' }; })
+      .then(function (data) {
+        if (r.status === 401 && path !== '/api/auth') {
+          token = ''; sessionStorage.removeItem('ql_token');
+          showLogin(); toast('登录已过期，请重新输入密码');
+          throw new Error('unauthorized');
+        }
+        if (!r.ok) { toast(data.message || ('请求失败（' + r.status + '）'), 3000); throw new Error(data.message || 'fail'); }
+        return data;
+      });
+  });
+}
+
+function showLogin() {
+  document.getElementById('loginView').classList.remove('hide');
+  document.getElementById('mainView').classList.add('hide');
+}
+
+function showMain() {
+  document.getElementById('loginView').classList.add('hide');
+  document.getElementById('mainView').classList.remove('hide');
+}
+
+function logout() {
+  token = ''; sessionStorage.removeItem('ql_token');
+  showLogin();
+}
+
+function login() {
+  var pwd = document.getElementById('pwd').value.trim();
+  if (!pwd) { toast('请输入家长密码'); return; }
+  api('/api/auth', { method: 'POST', body: { password: pwd } }).then(function (d) {
+    token = d.token;
+    sessionStorage.setItem('ql_token', token);
+    document.getElementById('pwd').value = '';
+    showMain();
+    boot();
+  }).catch(function () {});
+}
+
+function boot() {
+  loadState();
+  loadCustom();
+  // 电视上「手机扫码看错题本」的二维码带 #wrong，登录后直接落到错题本
+  if (location.hash === '#wrong') switchTab('wrong');
+}
+
+window.addEventListener('hashchange', function () {
+  if (location.hash === '#wrong' && !document.getElementById('mainView').classList.contains('hide')) {
+    switchTab('wrong');
+  }
+});
+
+function loadState() {
+  api('/api/state').then(function (s) {
+    document.getElementById('devInfo').textContent =
+      '电视端 · ' + (s.serviceRunning ? '守护服务运行中' : '守护服务未运行') +
+      ' · 已观看 ' + Math.floor(s.watchedSeconds / 60) + ' 分钟';
+    document.getElementById('sEnabled').textContent = s.enabled ? '已开启' : '已关闭';
+    document.getElementById('sEnabled').style.color = s.enabled ? '#81c784' : '#ef5350';
+    renderLicense(s.license);
+    document.getElementById('sService').textContent = s.serviceRunning ? '运行中' : '未运行';
+    document.getElementById('sService').style.color = s.serviceRunning ? '#81c784' : '#ef9a9a';
+    var sb = document.getElementById('serviceBtn');
+    sb.textContent = s.serviceRunning ? '停止' : '启动';
+    sb.className = s.serviceRunning ? 'danger' : 'ghost';
+    document.getElementById('sBank').textContent = (s.builtin + s.custom + s.aiCache) + ' 题';
+    document.getElementById('sTodayWrong').textContent = s.todayWrong + ' 题';
+
+    document.getElementById('enabled').checked = s.enabled;
+    document.getElementById('interval').value = s.intervalMinutes;
+    document.getElementById('required').value = s.requiredCorrect;
+    document.getElementById('grade').value = s.grade;
+    document.getElementById('semester').value = s.semester || 1;
+    document.getElementById('difficulty').value = s.difficulty;
+    document.getElementById('aiState').textContent = s.aiConfigured ? '已接入（按年级+学期出题）' : '未接入（使用本地题库）';
+    document.getElementById('bankCount').textContent =
+      '（内置 ' + s.builtin + ' · 自建 ' + s.custom + ' · AI 缓存 ' + s.aiCache + '）';
+    document.getElementById('wrongCount').textContent = '（' + s.wrongCount + ' 题）';
+  }).catch(function () {});
+}
+
+function saveConfig() {
+  api('/api/config', {
+    method: 'POST',
+    body: {
+      enabled: document.getElementById('enabled').checked,
+      intervalMinutes: parseInt(document.getElementById('interval').value, 10),
+      requiredCorrect: parseInt(document.getElementById('required').value, 10),
+      grade: parseInt(document.getElementById('grade').value, 10),
+      semester: parseInt(document.getElementById('semester').value, 10),
+      difficulty: parseInt(document.getElementById('difficulty').value, 10)
+    }
+  }).then(function (s) {
+    toast('设置已保存');
+    loadState();
+    if (s.grade) loadCustom();
+  }).catch(function () {});
+}
+
+function renderLicense(l) {
+  if (!l) return;
+  document.getElementById('licDevice').textContent = l.deviceCode || '—';
+  var enforced = l.enforced !== false;
+  document.getElementById('licActBox').classList.toggle('hide', !enforced);
+  document.getElementById('licOffHint').classList.toggle('hide', enforced);
+  var exp = !enforced ? '永久使用（未启用期限限制）'
+      : (l.permanent ? '永久授权' : (l.expireDate || '未激活'));
+  if (enforced && l.trial && !l.permanent) exp = '试用到期日 ' + exp;
+  document.getElementById('licExpire').textContent = exp;
+  var el = document.getElementById('licState');
+  el.textContent = l.summary || '—';
+  el.className = 'badge ' + (l.usable ? (l.permanent ? 'b-builtin' : 'b-ai') : 'b-custom');
+  el.style.color = l.usable ? '#81c784' : '#ef9a9a';
+}
+
+function copyDevice() {
+  var t = document.getElementById('licDevice').textContent.trim();
+  if (!t || t === '—') return;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(t).then(function () { toast('设备码已复制'); }, function () { toast(t); });
+  } else {
+    toast(t);
+  }
+}
+
+function activateLicense() {
+  var code = (document.getElementById('licCode').value || '').replace(/\s/g, '');
+  if (code.length !== 12) { toast('请输入 12 位激活码'); return; }
+  api('/api/license', { method: 'POST', body: { code: code } }).then(function (st) {
+    toast('激活成功，到期：' + (st.license && st.license.expireDate || ''));
+    document.getElementById('licCode').value = '';
+    loadState();
+  }).catch(function () {});
+}
+
+function toggleService() {
+  var running = document.getElementById('serviceBtn').textContent === '停止';
+  api('/api/service', { method: 'POST', body: { running: !running } }).then(function (st) {
+    toast(st.serviceRunning ? '守护服务已启动' : '守护服务已停止');
+    loadState();
+  }).catch(function () {});
+}
+
+// 电视端的开关/规则变化（比如在电视上手动改了）每 5 秒同步一次到手机
+setInterval(function () {
+  if (token && !document.getElementById('mainView').classList.contains('hide')) loadState();
+}, 5000);
+
+function switchTab(name) {
+  var tabs = document.querySelectorAll('.tab');
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].classList.toggle('on', tabs[i].getAttribute('data-tab') === name);
+  }
+  document.getElementById('tab-rules').classList.toggle('hide', name !== 'rules');
+  document.getElementById('tab-custom').classList.toggle('hide', name !== 'custom');
+  document.getElementById('tab-wrong').classList.toggle('hide', name !== 'wrong');
+  if (name === 'custom') loadCustom();
+  if (name === 'wrong') loadWrong();
+}
+
+function loadCustom() {
+  api('/api/questions?limit=500&source=custom').then(function (d) {
+    questions = d.items || [];
+    document.getElementById('bankCount').textContent = '（' + questions.length + ' 题）';
+    renderCustom();
+  }).catch(function () {});
+}
+
+function renderCustom() {
+  var box = document.getElementById('qlist');
+  if (!questions.length) {
+    box.innerHTML = '<div class="empty">还没有自建题。内置题库和 AI 出题都在电视上自动管理，这里只显示你手动加的题。</div>';
+    return;
+  }
+  var html = '';
+  for (var i = 0; i < questions.length; i++) {
+    var q = questions[i];
+    var subj = '<span class="badge b-' + q.subject + '">' + (SUBJECT[q.subject] || q.subject) + '</span>';
+    html += '<div class="qitem">'
+      + '<div>' + subj + '</div>'
+      + '<div class="qtext">' + escapeHtml(q.q) + '</div>'
+      + '<div class="ansline">✓ ' + escapeHtml(q.options[q.answer]) + '</div>'
+      + (q.explain ? '<div class="explain">解析：' + escapeHtml(q.explain) + '</div>' : '')
+      + '<div style="margin-top:8px"><button class="danger" onclick="delQuestion(\'' + q.id + '\')">删除</button></div>'
+      + '</div>';
+  }
+  box.innerHTML = html;
+}
+
+function escapeHtml(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+function toggleAdd() {
+  document.getElementById('addForm').classList.toggle('hide');
+}
+
+function addQuestion() {
+  var opts = [];
+  for (var i = 0; i < 4; i++) {
+    var v = document.getElementById('aO' + i).value.trim();
+    if (v) opts.push(v);
+  }
+  var q = document.getElementById('aQ').value.trim();
+  if (!q) { toast('请填写题干'); return; }
+  if (opts.length < 2) { toast('至少填 2 个选项'); return; }
+  var ans = parseInt(document.getElementById('aAnswer').value, 10);
+  if (ans >= opts.length) { toast('正确选项超出已填选项'); return; }
+  var item = {
+    subject: document.getElementById('aSubject').value,
+    q: q, options: opts, answer: ans,
+    explain: document.getElementById('aExplain').value.trim()
+  };
+  api('/api/questions', { method: 'POST', body: { items: [item] } }).then(function (d) {
+    toast('已保存 +' + d.added + ' 题');
+    document.getElementById('aQ').value = '';
+    for (var i = 0; i < 4; i++) document.getElementById('aO' + i).value = '';
+    document.getElementById('aExplain').value = '';
+    loadCustom();
+    loadState();
+  }).catch(function () {});
+}
+
+function delQuestion(id) {
+  if (!confirm('删除这道自建题？')) return;
+  api('/api/questions/' + encodeURIComponent(id), { method: 'DELETE' }).then(function () {
+    toast('已删除');
+    loadCustom();
+    loadState();
+  }).catch(function () {});
+}
+
+function loadWrong() {
+  api('/api/wrongbook').then(function (d) {
+    var items = d.items || [];
+    var missing = d.missing || 0;
+    document.getElementById('wrongCount').textContent = '（' + (items.length + missing) + ' 题'
+      + (missing > 0 ? '，其中 ' + missing + ' 题是旧题' : '') + '）';
+    document.getElementById('wrongTip').textContent = '今日答错 ' + (d.todayWrong || 0) + ' 题 · 按答错次数排序；孩子已掌握了就点「已掌握」移出';
+    if (!items.length) {
+      document.getElementById('wlist').innerHTML = missing > 0
+        ? '<div class="empty">有 ' + missing + ' 道旧错题，但题目内容已随题库更新无法还原'
+          + '<br><span class="muted">（旧版本答错的 AI 题未能保留；当前版本已修复，之后答错的题都会正常显示在这里）</span></div>'
+        : '<div class="empty">还没有错题，继续保持 👍</div>';
+      return;
+    }
+    var html = '';
+    for (var i = 0; i < items.length; i++) {
+      var w = items[i];
+      html += '<div class="qitem">'
+        + '<div class="row"><span><span class="badge b-' + subjectKey(w.subject) + '">' + escapeHtml(w.subject) + '</span></span>'
+        + '<span class="times">答错 ' + w.times + ' 次</span></div>'
+        + '<div class="qtext">' + escapeHtml(w.q) + '</div>'
+        + '<div class="ansline">✓ ' + escapeHtml(w.answer) + '</div>'
+        + (w.explain ? '<div class="explain">解析：' + escapeHtml(w.explain) + '</div>' : '')
+        + '<div style="margin-top:8px"><button class="ghost" onclick="delWrong(\'' + w.id + '\')">已掌握，移出</button></div>'
+        + '</div>';
+    }
+    if (d.missing > 0) {
+      html += '<div class="muted" style="margin-top:10px">另有 ' + d.missing + ' 道旧错题已随题库更新移出</div>';
+    }
+    document.getElementById('wlist').innerHTML = html;
+  }).catch(function () {});
+}
+
+function delWrong(id) {
+  if (!confirm('把这道题移出错题本？\n（孩子已经会了才移出，之后不会再被抽到加练）')) return;
+  api('/api/wrongbook/' + encodeURIComponent(id), { method: 'DELETE' })
+    .then(function () { toast('已移出错题本'); loadWrong(); loadState(); })
+    .catch(function () {});
+}
+
+function clearWrong() {
+  if (!confirm('清空整个错题本？\n清空后无法恢复，孩子的错题记录会全部消失。')) return;
+  api('/api/wrongbook/clear', { method: 'POST' })
+    .then(function () { toast('错题本已清空'); loadWrong(); loadState(); })
+    .catch(function () {});
+}
+
+function subjectKey(name) {
+  if (name === '数学') return 'math';
+  if (name === '语文') return 'chinese';
+  if (name === '英语') return 'english';
+  return 'builtin';
+}
+
+// 自动登录（sessionStorage 里有 token 时直接进）
+if (token) {
+  showMain();
+  boot();
+} else {
+  showLogin();
+}
+</script>
+</body>
+</html>

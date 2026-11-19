@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_root">#FF0D141F</color>
+    <color name="bg_card">#FF16202F</color>
+    <color name="stroke_card">#FF263449</color>
+    <color name="stroke_divider">#FF1F2B3E</color>
+
+    <color name="text_primary">#FFF2F5FA</color>
+    <color name="text_secondary">#FF9AA6B8</color>
+    <color name="text_muted">#FF6F7D94</color>
+
+    <color name="accent">#FF3D6DD8</color>
+    <color name="accent_light">#FF9FC1FF</color>
+    <color name="good">#FF81C784</color>
+    <color name="warn">#FFEF9A9A</color>
+</resources>

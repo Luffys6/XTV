@@ -1,0 +1,129 @@
+apply plugin: 'com.android.application'
+
+// ===== 敏感串注入（发卡密钥 / AI Key）=====
+// 明文只存在项目根目录的 secrets.properties（已 gitignore，不入库）。
+// 构建时做「异或 + Base64」再写进 BuildConfig，所以 APK 的 dex 字符串池里
+// 搜不到明文，jadx 打开也只能看到两段无意义的 base64。
+// 注意：这只是提高提取门槛，不是加密——离线校验要求密钥最终必须在设备上可用，
+// 真防破解要靠服务端核验（见 README「已知缺陷」）。
+def secretsFile = rootProject.file('secrets.properties')
+def localSecrets = new Properties()
+if (secretsFile.exists()) {
+    secretsFile.withInputStream { localSecrets.load(it) }
+}
+def plainLicenseSecret = (localSecrets.getProperty('LICENSE_SECRET')
+        ?: project.findProperty('LICENSE_SECRET') ?: '').toString().trim()
+def plainAiKey = (localSecrets.getProperty('AI_API_KEY')
+        ?: project.findProperty('AI_API_KEY') ?: '').toString().trim()
+def plainAiKey2 = (localSecrets.getProperty('AI_API_KEY_2')
+        ?: project.findProperty('AI_API_KEY_2') ?: '').toString().trim()
+def licenseEnforce = (project.findProperty('LICENSE_ENFORCE') ?: 'false').toString().toBoolean()
+
+if (licenseEnforce && plainLicenseSecret.isEmpty()) {
+    throw new GradleException(
+            "LICENSE_ENFORCE=true 但没有找到 LICENSE_SECRET。\n" +
+            "请在项目根目录新建 secrets.properties（不入库），写入：\n" +
+            "    LICENSE_SECRET=你的32位随机字符串\n" +
+            "    AI_API_KEY=你的Key\n" +
+            "然后用 python tools/license_gen.py 发码（它读同一个文件）。")
+}
+
+// 每次构建随机一把 8 字节混淆钥（跟着 APK 一起发，只挡 strings / jadx，不挡 hook）
+def xorKey = new byte[8]
+new Random().nextBytes(xorKey)
+def b64 = { byte[] b -> java.util.Base64.getEncoder().encodeToString(b) }
+def xorB64 = { String s ->
+    if (!s) return ''
+    byte[] b = s.getBytes('UTF-8')
+    for (int i = 0; i < b.length; i++) {
+        b[i] = (byte) (b[i] ^ xorKey[i % xorKey.length] ^ (byte) (i * 31))
+    }
+    return b64(b)
+}
+def xorKeyB64 = b64(xorKey)
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        applicationId "com.family.quizlock"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 10
+        versionName "1.9"
+
+        // 把 gradle.properties 里的配置打包进 App，装上即生效，无需 adb 配置
+        buildConfigField "String", "AI_MODEL", "\"${project.findProperty('AI_MODEL') ?: 'glm-4-flash'}\""
+        buildConfigField "String", "AI_BASE_URL", "\"${project.findProperty('AI_BASE_URL') ?: 'https://open.bigmodel.cn/api/paas/v4/chat/completions'}\""
+        buildConfigField "int", "DEFAULT_GRADE", "${project.findProperty('DEFAULT_GRADE') ?: 5}"
+        // 使用期限（月卡）签名密钥，与 tools/license_gen.py 共用；运行时由 Secret 解码
+        buildConfigField "String", "AI_MODEL_FALLBACK", "\"${project.findProperty('AI_MODEL_FALLBACK') ?: ''}\""
+        // 备用 AI 平台（如硅基流动）：主平台整体过载时兜底。key 可留空，运行期用 adb 配置
+        buildConfigField "String", "AI_BASE_URL_2", "\"${project.findProperty('AI_BASE_URL_2') ?: 'https://api.siliconflow.cn/v1/chat/completions'}\""
+        buildConfigField "String", "AI_MODEL_2", "\"${project.findProperty('AI_MODEL_2') ?: 'Qwen/Qwen3-8B'}\""
+        buildConfigField "String", "AI_API_KEY_2_OBF", "\"${xorB64(plainAiKey2)}\""
+        buildConfigField "String", "LICENSE_SECRET_OBF", "\"${xorB64(plainLicenseSecret)}\""
+        buildConfigField "String", "LICENSE_SECRET_XOR", "\"${xorKeyB64}\""
+        buildConfigField "String", "AI_API_KEY_OBF", "\"${xorB64(plainAiKey)}\""
+        buildConfigField "String", "AI_API_KEY_XOR", "\"${xorKeyB64}\""
+        buildConfigField "int", "LICENSE_MONTH_DAYS", "${project.findProperty('LICENSE_MONTH_DAYS') ?: 30}"
+        // 是否启用使用期限限制（false=永久可用，true=月卡制）
+        buildConfigField "boolean", "LICENSE_ENFORCE", "${project.findProperty('LICENSE_ENFORCE') ?: 'false'}"
+        // APK 编译时间（毫秒）：电视开机时钟停在出厂日期时，用它判断"设备时钟还没校准"，
+        // 避免试用期被错误地按出厂日期发放（License.trustedDay）
+        buildConfigField "long", "BUILD_TIME", "${System.currentTimeMillis()}L"
+    }
+
+    // 只给本地冒烟测试用：`-PuseDebugSigning=true` 时用 Android 自带的 debug 签名给 release 签名，
+    // 产物可以直接 adb install（正式分发请用 Android Studio 的签名包 / 自己的 keystore，别用这个）
+    signingConfigs {
+        if (project.hasProperty('useDebugSigning')) {
+            debugSign {
+                storeFile file(System.getProperty('user.home') + '/.android/debug.keystore')
+                storePassword 'android'
+                keyAlias 'androiddebugkey'
+                keyPassword 'android'
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            // 调试包不混淆，方便看堆栈
+            minifyEnabled false
+        }
+        release {
+            // 混淆 + 代码收缩：类名/方法名被改写，反编译后读不到 License.sign 之类的线索
+            minifyEnabled true
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            if (project.hasProperty('useDebugSigning')) {
+                signingConfig signingConfigs.debugSign
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+
+            if (variant.buildType.name.equals('release')) {
+                outputFileName = "TV_${variant.versionName}_" + new Date().format("yyyyMMddHHmm") + ".apk"
+            } else if (variant.buildType.name.equals('debug')) {
+                outputFileName = "app-debug.apk"
+            }
+
+            //outputFileName = "${project.rootProject.name}_${variant.versionName}_"+new Date().format("yyyyMMddHHmm")+".apk"
+
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    // 二维码生成（纯 Java，无 Android 依赖），用于"扫码连接管理面板"
+    implementation 'com.google.zxing:core:3.4.1'
+}

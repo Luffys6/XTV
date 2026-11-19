@@ -1,0 +1,28 @@
+{
+  "grade": 1,
+  "questions": [
+    {"id": "m01", "subject": "math", "q": "3 + 5 = ?", "options": ["8", "7", "9", "15"], "answer": 0, "explain": "3+5=8"},
+    {"id": "m02", "subject": "math", "q": "9 - 4 = ?", "options": ["5", "6", "3", "13"], "answer": 0, "explain": "9-4=5"},
+    {"id": "m03", "subject": "math", "q": "10 + 20 = ?", "options": ["30", "20", "40", "3"], "answer": 0, "explain": "1个十加2个十是3个十，即30"},
+    {"id": "m04", "subject": "math", "q": "一个正方形有几条边？", "options": ["4 条", "3 条", "5 条", "6 条"], "answer": 0, "explain": "正方形有4条边，长度都相等"},
+    {"id": "m05", "subject": "math", "q": "15 里面有 1 个十和几个一？", "options": ["5", "1", "10", "15"], "answer": 0, "explain": "15=1个十+5个一"},
+    {"id": "m06", "subject": "math", "q": "下面哪个数最大？", "options": ["81", "18", "80", "8"], "answer": 0, "explain": "81 十位是8、个位是1，比80大"},
+    {"id": "m07", "subject": "math", "q": "小明有 6 个苹果，吃了 2 个，还剩几个？", "options": ["4 个", "8 个", "3 个", "2 个"], "answer": 0, "explain": "6-2=4"},
+
+    {"id": "c01", "subject": "chinese", "q": "“日”的拼音是？", "options": ["rì", "yì", "lì", "nì"], "answer": 0, "explain": "“日”读 rì，第四声"},
+    {"id": "c02", "subject": "chinese", "q": "“天”字有几笔？", "options": ["4 笔", "3 笔", "5 笔", "2 笔"], "answer": 0, "explain": "“天”的笔顺：横、横、撇、捺，共4笔"},
+    {"id": "c03", "subject": "chinese", "q": "“大”的反义词是？", "options": ["小", "多", "高", "上"], "answer": 0, "explain": "大 ↔ 小"},
+    {"id": "c04", "subject": "chinese", "q": "“白”读 bái，它的韵母是？", "options": ["ai", "b", "a", "i"], "answer": 0, "explain": "bái 声母 b，韵母 ai"},
+    {"id": "c05", "subject": "chinese", "q": "“床前明月光”的下一句是？", "options": ["疑是地上霜", "低头思故乡", "举头望明月", "处处闻啼鸟"], "answer": 0, "explain": "《静夜思》：床前明月光，疑是地上霜"},
+    {"id": "c06", "subject": "chinese", "q": "一（ ）马，括号里应填？", "options": ["匹", "条", "只", "头"], "answer": 0, "explain": "马用“匹”作量词：一匹马"},
+    {"id": "c07", "subject": "chinese", "q": "“早上”的反义词是？", "options": ["晚上", "中午", "白天", "清晨"], "answer": 0, "explain": "早上 ↔ 晚上"},
+
+    {"id": "e01", "subject": "english", "q": "“apple”是什么意思？", "options": ["苹果", "香蕉", "橘子", "西瓜"], "answer": 0, "explain": "apple = 苹果"},
+    {"id": "e02", "subject": "english", "q": "“cat”是哪种动物？", "options": ["猫", "狗", "兔子", "鸭子"], "answer": 0, "explain": "cat = 猫"},
+    {"id": "e03", "subject": "english", "q": "“一”的英文是？", "options": ["one", "two", "ten", "nine"], "answer": 0, "explain": "one = 一"},
+    {"id": "e04", "subject": "english", "q": "“red”是什么颜色？", "options": ["红色", "蓝色", "绿色", "黄色"], "answer": 0, "explain": "red = 红色"},
+    {"id": "e05", "subject": "english", "q": "“Good morning”是什么意思？", "options": ["早上好", "晚上好", "再见", "谢谢"], "answer": 0, "explain": "Good morning = 早上好"},
+    {"id": "e06", "subject": "english", "q": "字母 A 后面的字母是？", "options": ["B", "C", "D", "E"], "answer": 0, "explain": "字母表顺序：A、B、C、D…"},
+    {"id": "e07", "subject": "english", "q": "“dog”是哪种动物？", "options": ["狗", "猫", "鸟", "鱼"], "answer": 0, "explain": "dog = 狗"}
+  ]
+}

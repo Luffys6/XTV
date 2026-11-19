@@ -1,0 +1,28 @@
+{
+  "grade": 4,
+  "questions": [
+    {"id": "m01", "subject": "math", "q": "125 × 8 = ?", "options": ["1000", "800", "1200", "900"], "answer": 0, "explain": "125×8=1000"},
+    {"id": "m02", "subject": "math", "q": "480 ÷ 12 = ?", "options": ["40", "48", "36", "44"], "answer": 0, "explain": "12×40=480，所以 480÷12=40"},
+    {"id": "m03", "subject": "math", "q": "三角形的三个内角和是多少？", "options": ["180°", "90°", "360°", "270°"], "answer": 0, "explain": "三角形内角和是180°"},
+    {"id": "m04", "subject": "math", "q": "3.6 + 4.4 = ?", "options": ["8", "7", "8.10", "7.10"], "answer": 0, "explain": "3.6+4.4=8.0，即8"},
+    {"id": "m05", "subject": "math", "q": "平行四边形的对边有什么关系？", "options": ["平行且相等", "互相垂直", "长度不相等", "都是直角边"], "answer": 0, "explain": "平行四边形两组对边分别平行且相等"},
+    {"id": "m06", "subject": "math", "q": "0.25 等于下面哪个分数？", "options": ["1/4", "1/2", "1/5", "2/5"], "answer": 0, "explain": "0.25=25/100=1/4"},
+    {"id": "m07", "subject": "math", "q": "一辆汽车每小时行 60 千米，3 小时行多少千米？", "options": ["180 千米", "120 千米", "63 千米", "90 千米"], "answer": 0, "explain": "路程=速度×时间=60×3=180千米"},
+
+    {"id": "c01", "subject": "chinese", "q": "“桂林山水甲天下”中“甲”的意思是？", "options": ["第一", "铠甲", "最差", "比试"], "answer": 0, "explain": "“甲”在这里是“第一”的意思"},
+    {"id": "c02", "subject": "chinese", "q": "《题西林壁》的作者是？", "options": ["苏轼", "李白", "白居易", "王安石"], "answer": 0, "explain": "《题西林壁》为宋代苏轼所作"},
+    {"id": "c03", "subject": "chinese", "q": "《鸟的天堂》的作者是？", "options": ["巴金", "老舍", "朱自清", "冰心"], "answer": 0, "explain": "《鸟的天堂》作者是巴金"},
+    {"id": "c04", "subject": "chinese", "q": "成语“胸有成竹”比喻什么？", "options": ["做事之前已有把握", "竹子长得很茂盛", "画画非常逼真", "心里很空虚"], "answer": 0, "explain": "胸有成竹比喻做事前已有通盘考虑和把握"},
+    {"id": "c05", "subject": "chinese", "q": "一（ ）筷子，括号里应填？", "options": ["双", "只", "条", "个"], "answer": 0, "explain": "成对的东西用“双”：一双筷子"},
+    {"id": "c06", "subject": "chinese", "q": "“精致”的反义词是？", "options": ["粗糙", "精细", "漂亮", "考究"], "answer": 0, "explain": "精致 ↔ 粗糙"},
+    {"id": "c07", "subject": "chinese", "q": "“难道这不是你的书吗？”这是什么句式？", "options": ["反问句", "疑问句", "陈述句", "感叹句"], "answer": 0, "explain": "用疑问的形式表达肯定意思，是反问句"},
+
+    {"id": "e01", "subject": "english", "q": "“library”是什么意思？", "options": ["图书馆", "教室", "操场", "医院"], "answer": 0, "explain": "library = 图书馆"},
+    {"id": "e02", "subject": "english", "q": "There ___ two apples on the table.", "options": ["are", "is", "am", "be"], "answer": 0, "explain": "主语 two apples 是复数，用 are"},
+    {"id": "e03", "subject": "english", "q": "“go”的过去式是？", "options": ["went", "goed", "goes", "going"], "answer": 0, "explain": "不规则动词：go → went"},
+    {"id": "e04", "subject": "english", "q": "He ___ TV every evening.", "options": ["watches", "watch", "watching", "watched"], "answer": 0, "explain": "第三人称单数一般现在时，watch 加 es"},
+    {"id": "e05", "subject": "english", "q": "“expensive”的反义词是？", "options": ["cheap", "dear", "high", "costly"], "answer": 0, "explain": "expensive（贵）↔ cheap（便宜）"},
+    {"id": "e06", "subject": "english", "q": "“How's the weather?” 的答语是？", "options": ["It's sunny.", "I'm fine.", "It's Monday.", "I'm ten."], "answer": 0, "explain": "问天气，答天气状况：It's sunny."},
+    {"id": "e07", "subject": "english", "q": "“child”的复数形式是？", "options": ["children", "childs", "childes", "childrens"], "answer": 0, "explain": "不规则复数：child → children"}
+  ]
+}

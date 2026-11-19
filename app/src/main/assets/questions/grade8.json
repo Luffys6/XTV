@@ -1,0 +1,37 @@
+{
+  "grade": 8,
+  "questions": [
+    {"id": "m01", "subject": "math", "q": "下列长度的三条线段能组成直角三角形的是", "options": ["3，4，5", "2，3，4", "4，5，6", "5，6，7"], "answer": 0, "explain": "3²+4²=9+16=25=5²，满足勾股定理的逆定理"},
+    {"id": "m02", "subject": "math", "q": "计算 (x + 3)(x - 3) 的结果是", "options": ["x² - 9", "x² + 9", "x² - 6x + 9", "x² - 3"], "answer": 0, "explain": "平方差公式 (a+b)(a-b)=a²-b²"},
+    {"id": "m03", "subject": "math", "q": "分解因式 x² - 4x + 4 的结果是", "options": ["(x - 2)²", "(x + 2)²", "(x - 4)²", "x(x - 4)"], "answer": 0, "explain": "完全平方公式 a²-2ab+b²=(a-b)²"},
+    {"id": "m04", "subject": "math", "q": "一次函数 y = 2x - 3 中，当 x = 1 时 y 的值是", "options": ["-1", "1", "-5", "5"], "answer": 0, "explain": "代入得 y=2×1-3=-1"},
+    {"id": "m05", "subject": "math", "q": "分式 1/(x - 2) 有意义的条件是", "options": ["x ≠ 2", "x = 2", "x > 2", "x < 2"], "answer": 0, "explain": "分母不能为 0，故 x-2≠0，即 x≠2"},
+    {"id": "m06", "subject": "math", "q": "等腰三角形有一个角是 100°，则它的底角是", "options": ["40°", "100°", "50°", "80°"], "answer": 0, "explain": "100° 只能是顶角，(180°-100°)÷2=40°"},
+    {"id": "m07", "subject": "math", "q": "√16 的值是", "options": ["4", "8", "±4", "2"], "answer": 0, "explain": "算术平方根取非负值，√16=4"},
+    {"id": "m08", "subject": "math", "q": "已知 a + b = 5，ab = 6，则 a² + b² 的值是", "options": ["13", "25", "11", "37"], "answer": 0, "explain": "a²+b²=(a+b)²-2ab=25-12=13"},
+    {"id": "m09", "subject": "math", "q": "数据 2，3，3，5，7 的中位数是", "options": ["3", "5", "3.5", "4"], "answer": 0, "explain": "从小到大排列后中间的数是 3"},
+    {"id": "m10", "subject": "math", "q": "点 A(-2，3) 关于 x 轴对称的点的坐标是", "options": ["(-2，-3)", "(2，3)", "(2，-3)", "(-2，3)"], "answer": 0, "explain": "关于 x 轴对称，横坐标不变，纵坐标取相反数"},
+
+    {"id": "c01", "subject": "chinese", "q": "《三峡》的作者是", "options": ["郦道元", "陶弘景", "苏轼", "柳宗元"], "answer": 0, "explain": "《三峡》选自北魏郦道元的《水经注》"},
+    {"id": "c02", "subject": "chinese", "q": "“自非亭午夜分，不见曦月”中的“曦”指的是", "options": ["日光", "月亮", "云雾", "山峦"], "answer": 0, "explain": "曦指日光，此句写三峡两岸山高谷深、遮天蔽日"},
+    {"id": "c03", "subject": "chinese", "q": "《记承天寺夜游》的作者是", "options": ["苏轼", "苏辙", "王安石", "欧阳修"], "answer": 0, "explain": "该文是苏轼被贬黄州时所作"},
+    {"id": "c04", "subject": "chinese", "q": "“征蓬出汉塞，归雁入胡天”的作者是", "options": ["王维", "李白", "杜甫", "岑参"], "answer": 0, "explain": "诗句出自王维的《使至塞上》"},
+    {"id": "c05", "subject": "chinese", "q": "《藤野先生》中藤野先生的形象是", "options": ["鲁迅在日本学医时严谨正直的老师", "鲁迅的私塾先生", "鲁迅的邻居", "鲁迅小说中虚构的人物"], "answer": 0, "explain": "藤野先生是鲁迅在日本仙台学医时的解剖学老师，没有民族偏见"},
+    {"id": "c06", "subject": "chinese", "q": "“富贵不能淫，贫贱不能移，威武不能屈”出自", "options": ["《孟子》", "《论语》", "《庄子》", "《荀子》"], "answer": 0, "explain": "语出《孟子·滕文公下》，讲大丈夫的品格"},
+    {"id": "c07", "subject": "chinese", "q": "《答谢中书书》中“书”的意思是", "options": ["书信", "书籍", "书写", "文书"], "answer": 0, "explain": "“书”即书信，此文是陶弘景写给谢中书的一封信"},
+    {"id": "c08", "subject": "chinese", "q": "“感时花溅泪，恨别鸟惊心”的作者是", "options": ["杜甫", "李白", "王维", "白居易"], "answer": 0, "explain": "出自杜甫《春望》，写安史之乱中的忧国之情"},
+    {"id": "c09", "subject": "chinese", "q": "《中国石拱桥》的作者是", "options": ["茅以升", "叶圣陶", "朱自清", "钱钟书"], "answer": 0, "explain": "茅以升是著名桥梁专家，《中国石拱桥》是其说明文代表作"},
+    {"id": "c10", "subject": "chinese", "q": "“鸢飞戾天者，望峰息心”出自", "options": ["《与朱元思书》", "《三峡》", "《岳阳楼记》", "《小石潭记》"], "answer": 0, "explain": "出自吴均《与朱元思书》，写富春江山水令人忘怀名利"},
+
+    {"id": "e01", "subject": "english", "q": "He is ___ than his brother.", "options": ["taller", "tall", "tallest", "the tallest"], "answer": 0, "explain": "than 提示比较级，tall 的比较级是 taller"},
+    {"id": "e02", "subject": "english", "q": "I ___ to Beijing twice. It's a wonderful city.", "options": ["have been", "have gone", "went", "was"], "answer": 0, "explain": "表示“去过某地（现已回来）”用 have been to"},
+    {"id": "e03", "subject": "english", "q": "If it ___ tomorrow, we will stay at home.", "options": ["rains", "will rain", "rained", "raining"], "answer": 0, "explain": "if 引导的条件状语从句主将从现，从句用一般现在时"},
+    {"id": "e04", "subject": "english", "q": "He told me that he ___ busy the next day.", "options": ["would be", "will be", "is", "was"], "answer": 0, "explain": "宾语从句主句为过去时，从句用过去的将来 would be"},
+    {"id": "e05", "subject": "english", "q": "The bridge ___ in 1990.", "options": ["was built", "built", "is built", "has built"], "answer": 0, "explain": "桥是被建造的，且时间在过去，用一般过去时被动语态"},
+    {"id": "e06", "subject": "english", "q": "You'd better ___ more water every day.", "options": ["drink", "drinking", "to drink", "drank"], "answer": 0, "explain": "had better 后接动词原形"},
+    {"id": "e07", "subject": "english", "q": "My hometown has changed a lot ___ the past ten years.", "options": ["in", "for", "at", "since"], "answer": 0, "explain": "in the past ten years 表示“在过去的十年里”"},
+    {"id": "e08", "subject": "english", "q": "— How long ___ you ___ this bike?  — For two years.", "options": ["have; had", "have; bought", "did; buy", "do; have"], "answer": 0, "explain": "How long 提问一段时间，须用延续性动词 have 的完成时"},
+    {"id": "e09", "subject": "english", "q": "The more you read, ___ you will be.", "options": ["the smarter", "smarter", "the smartest", "more smart"], "answer": 0, "explain": "“the + 比较级, the + 比较级”表示“越……越……”"},
+    {"id": "e10", "subject": "english", "q": "Neither Tom nor his parents ___ at home now.", "options": ["are", "is", "was", "has"], "answer": 0, "explain": "neither…nor… 连接主语时遵循就近原则，靠近 parents 用 are"}
+  ]
+}

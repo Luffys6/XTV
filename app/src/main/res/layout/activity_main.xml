@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_root"
+    android:clipToPadding="false"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="36dp"
+        android:paddingTop="26dp"
+        android:paddingRight="36dp"
+        android:paddingBottom="36dp">
+
+        <!-- ===== 顶部标题 ===== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="学习小卫士"
+                android:textColor="@color/text_primary"
+                android:textSize="34sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:text="看电视先答题 · 家长随时可调"
+                android:textColor="@color/text_muted"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- ===== 状态卡：三个指示灯胶囊，正常绿色 / 异常红色 ===== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/bg_card"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="18dp"
+            android:paddingTop="16dp"
+            android:paddingRight="18dp"
+            android:paddingBottom="14dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvStLock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_chip"
+                    android:paddingLeft="28dp"
+                    android:paddingTop="9dp"
+                    android:paddingRight="28dp"
+                    android:paddingBottom="9dp"
+                    android:text="● 答题守护 · —"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvStService"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/bg_chip"
+                    android:paddingLeft="28dp"
+                    android:paddingTop="9dp"
+                    android:paddingRight="28dp"
+                    android:paddingBottom="9dp"
+                    android:text="● 守护服务 · —"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvStOverlay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/bg_chip"
+                    android:paddingLeft="28dp"
+                    android:paddingTop="9dp"
+                    android:paddingRight="28dp"
+                    android:paddingBottom="9dp"
+                    android:text="● 悬浮窗权限 · —"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvStLicense"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/bg_chip"
+                    android:paddingLeft="28dp"
+                    android:paddingTop="9dp"
+                    android:paddingRight="28dp"
+                    android:paddingBottom="9dp"
+                    android:text="● 使用期限 · —"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvWatched"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="本段已观看 0 分 0 秒"
+                android:textColor="@color/text_muted"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- ===== 运行与权限 ===== -->
+        <TextView
+            style="@style/SectionTitle"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="4dp"
+            android:text="运行与权限" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <Button
+                android:id="@+id/btnOverlay"
+                style="@style/Btn"
+                android:text="① 授予悬浮窗权限" />
+
+            <Button
+                android:id="@+id/btnService"
+                style="@style/Btn"
+                android:layout_marginTop="10dp"
+                android:text="② 启动 / 停止守护服务" />
+
+            <Button
+                android:id="@+id/btnToggle"
+                style="@style/Btn"
+                android:layout_marginTop="10dp"
+                android:text="③ 开启 / 关闭答题守护（需家长密码）" />
+        </LinearLayout>
+
+        <!-- ===== 答题规则 ===== -->
+        <TextView
+            style="@style/SectionTitle"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="4dp"
+            android:text="答题规则" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical"
+            android:paddingLeft="18dp"
+            android:paddingTop="8dp"
+            android:paddingRight="14dp"
+            android:paddingBottom="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp">
+
+                <TextView
+                    style="@style/RowLabel"
+                    android:text="弹题间隔" />
+
+                <Button
+                    android:id="@+id/btnIntervalMinus"
+                    style="@style/Btn.Step"
+                    android:text="－" />
+
+                <TextView
+                    android:id="@+id/tvInterval"
+                    style="@style/RowValue"
+                    android:text="10 分钟" />
+
+                <Button
+                    android:id="@+id/btnIntervalPlus"
+                    style="@style/Btn.Step"
+                    android:text="＋" />
+            </LinearLayout>
+
+            <View style="@style/Divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp">
+
+                <TextView
+                    style="@style/RowLabel"
+                    android:text="解锁条件" />
+
+                <Button
+                    android:id="@+id/btnRequiredMinus"
+                    style="@style/Btn.Step"
+                    android:text="－" />
+
+                <TextView
+                    android:id="@+id/tvRequired"
+                    style="@style/RowValue"
+                    android:text="答对 5 题" />
+
+                <Button
+                    android:id="@+id/btnRequiredPlus"
+                    style="@style/Btn.Step"
+                    android:text="＋" />
+            </LinearLayout>
+
+            <View style="@style/Divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp">
+
+                <TextView
+                    style="@style/RowLabel"
+                    android:text="年级选择" />
+
+                <Button
+                    android:id="@+id/btnGradeMinus"
+                    style="@style/Btn.Step"
+                    android:text="－" />
+
+                <TextView
+                    android:id="@+id/tvGrade"
+                    style="@style/RowValue"
+                    android:minWidth="112dp"
+                    android:text="小学 5 年级" />
+
+                <Button
+                    android:id="@+id/btnGradePlus"
+                    style="@style/Btn.Step"
+                    android:text="＋" />
+            </LinearLayout>
+
+            <View style="@style/Divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp">
+
+                <TextView
+                    style="@style/RowLabel"
+                    android:text="学期" />
+
+                <TextView
+                    android:id="@+id/tvSemester"
+                    style="@style/RowValue"
+                    android:minWidth="112dp"
+                    android:text="上学期" />
+
+                <Button
+                    android:id="@+id/btnSemesterToggle"
+                    style="@style/Btn.Step"
+                    android:text="切换" />
+            </LinearLayout>
+
+            <View style="@style/Divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp">
+
+                <TextView
+                    style="@style/RowLabel"
+                    android:text="题目难度" />
+
+                <Button
+                    android:id="@+id/btnDiffMinus"
+                    style="@style/Btn.Step"
+                    android:text="－" />
+
+                <TextView
+                    android:id="@+id/tvDiff"
+                    style="@style/RowValue"
+                    android:minWidth="112dp"
+                    android:text="中等" />
+
+                <Button
+                    android:id="@+id/btnDiffPlus"
+                    style="@style/Btn.Step"
+                    android:text="＋" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ===== 快捷操作 ===== -->
+        <TextView
+            style="@style/SectionTitle"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="4dp"
+            android:text="快捷操作" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <Button
+                android:id="@+id/btnQuizNow"
+                style="@style/Btn"
+                android:text="立即测试弹题" />
+
+            <Button
+                android:id="@+id/btnWrongQr"
+                style="@style/Btn"
+                android:layout_marginTop="10dp"
+                android:text="📱 手机扫码看错题本（可移出 / 清空）" />
+
+            <Button
+                android:id="@+id/btnClearCache"
+                style="@style/Btn"
+                android:layout_marginTop="10dp"
+                android:text="清理 AI 缓存（释放空间）" />
+
+            <Button
+                android:id="@+id/btnLicense"
+                style="@style/Btn"
+                android:layout_marginTop="10dp"
+                android:text="🔑 使用期限 / 续期（查看设备码）" />
+        </LinearLayout>
+
+        <!-- ===== 题库与数据 ===== -->
+        <TextView
+            style="@style/SectionTitle"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="4dp"
+            android:text="题库与数据" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:id="@+id/tvAiStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_secondary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvStats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:lineSpacingExtra="6dp"
+                android:textColor="@color/text_primary"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <!-- ===== 手机管理面板 ===== -->
+        <TextView
+            style="@style/SectionTitle"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="4dp"
+            android:text="手机管理面板" />
+
+        <LinearLayout
+            android:id="@+id/qrCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_qr_card"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="14dp">
+
+            <ImageView
+                android:id="@+id/ivQr"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="#FFFFFFFF"
+                android:contentDescription="管理面板二维码"
+                android:padding="5dp"
+                android:scaleType="fitXY" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📱 扫码连接"
+                    android:textColor="@color/text_primary"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvAdmin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:lineSpacingExtra="3dp"
+                    android:text="面板启动中…"
+                    android:textColor="@color/good"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="手机连同一个 WiFi → 微信/相机扫码 → 输入家长密码；按 OK 放大二维码"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ===== 使用说明 ===== -->
+        <TextView
+            style="@style/SectionTitle"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="4dp"
+            android:text="使用说明" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="6dp"
+                android:text="1. 先授予悬浮窗权限（TCL 电视一般无此设置页，用 adb：appops set com.family.quizlock SYSTEM_ALERT_WINDOW allow）\n2. 启动守护服务后即可退到后台\n3. 防杀后台：adb shell dumpsys deviceidle whitelist +com.family.quizlock\n4. 开机自启：系统重启后会自动弹题（需允许自启/保持服务）\n5. AI 出题：接入免费大模型后按年级自动出题，未接入时用内置题库"
+                android:textColor="@color/text_secondary"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

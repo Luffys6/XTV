@@ -1,0 +1,28 @@
+{
+  "grade": 6,
+  "questions": [
+    {"id": "m01", "subject": "math", "q": "3/4 × 8 = ?", "options": ["6", "3/32", "24", "5/4"], "answer": 0, "explain": "3/4×8=24/4=6"},
+    {"id": "m02", "subject": "math", "q": "一个圆的半径是 3 厘米，它的直径是多少？", "options": ["6 厘米", "3 厘米", "9 厘米", "1.5 厘米"], "answer": 0, "explain": "直径=半径×2=6厘米"},
+    {"id": "m03", "subject": "math", "q": "20 的 25% 是多少？", "options": ["5", "4", "8", "2.5"], "answer": 0, "explain": "20×25%=20×0.25=5"},
+    {"id": "m04", "subject": "math", "q": "1/2 ÷ 1/4 = ?", "options": ["2", "1/8", "1/2", "4"], "answer": 0, "explain": "除以一个分数等于乘它的倒数：1/2×4=2"},
+    {"id": "m05", "subject": "math", "q": "圆的周长公式是？", "options": ["C = πd", "C = πr²", "C = 2πr²", "C = πd²"], "answer": 0, "explain": "圆的周长 C=πd=2πr"},
+    {"id": "m06", "subject": "math", "q": "一件商品原价 80 元，打八折后是多少元？", "options": ["64 元", "72 元", "16 元", "60 元"], "answer": 0, "explain": "八折就是原价的80%：80×0.8=64"},
+    {"id": "m07", "subject": "math", "q": "5 : 8 的比值是？", "options": ["5/8", "8/5", "40", "13"], "answer": 0, "explain": "比值=前项÷后项=5÷8=5/8"},
+
+    {"id": "c01", "subject": "chinese", "q": "“野旷天低树”的下一句是？", "options": ["江清月近人", "移舟泊烟渚", "日暮客愁新", "孤帆远影碧空尽"], "answer": 0, "explain": "孟浩然《宿建德江》：野旷天低树，江清月近人"},
+    {"id": "c02", "subject": "chinese", "q": "《草原》的作者是？", "options": ["老舍", "巴金", "鲁迅", "冰心"], "answer": 0, "explain": "《草原》是老舍的散文"},
+    {"id": "c03", "subject": "chinese", "q": "《七律·长征》的作者是？", "options": ["毛泽东", "朱德", "陈毅", "郭沫若"], "answer": 0, "explain": "《七律·长征》是毛泽东所作"},
+    {"id": "c04", "subject": "chinese", "q": "成语“司空见惯”的意思是？", "options": ["看惯了就不觉得奇怪", "很少见到", "突然发现", "非常奇怪"], "answer": 0, "explain": "司空见惯指某事常见，不足为奇"},
+    {"id": "c05", "subject": "chinese", "q": "一（ ）明月，括号里应填？", "options": ["轮", "个", "张", "片"], "answer": 0, "explain": "月亮用“轮”：一轮明月"},
+    {"id": "c06", "subject": "chinese", "q": "“慷慨”的反义词是？", "options": ["吝啬", "大方", "热情", "豪爽"], "answer": 0, "explain": "慷慨（大方）↔ 吝啬（小气）"},
+    {"id": "c07", "subject": "chinese", "q": "“他的脸红得像苹果”用了什么修辞手法？", "options": ["比喻", "拟人", "夸张", "反问"], "answer": 0, "explain": "把脸红比作苹果，是比喻"},
+
+    {"id": "e01", "subject": "english", "q": "“hospital”是什么意思？", "options": ["医院", "学校", "邮局", "商店"], "answer": 0, "explain": "hospital = 医院"},
+    {"id": "e02", "subject": "english", "q": "I ___ to Beijing last year.", "options": ["went", "go", "goes", "going"], "answer": 0, "explain": "last year 是过去时间，用过去式 went"},
+    {"id": "e03", "subject": "english", "q": "“good”的比较级是？", "options": ["better", "gooder", "best", "more good"], "answer": 0, "explain": "不规则比较级：good → better → best"},
+    {"id": "e04", "subject": "english", "q": "She is good ___ English.", "options": ["at", "in", "on", "for"], "answer": 0, "explain": "固定搭配 be good at 擅长"},
+    {"id": "e05", "subject": "english", "q": "“How tall are you?” 是什么意思？", "options": ["你多高", "你多重", "你几岁", "你叫什么"], "answer": 0, "explain": "How tall are you? 问你多高"},
+    {"id": "e06", "subject": "english", "q": "“tomato”的复数形式是？", "options": ["tomatoes", "tomatos", "tomato", "tomatoies"], "answer": 0, "explain": "以 o 结尾的部分名词加 es：tomato → tomatoes"},
+    {"id": "e07", "subject": "english", "q": "“make”的过去式是？", "options": ["made", "maked", "makes", "making"], "answer": 0, "explain": "不规则动词：make → made"}
+  ]
+}
